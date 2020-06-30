@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colméia de Amanda</title>
+    <style>body{background-image: url(/imagens/colmeia.jpg); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;}
+        img {
+           position: absolute;
+            width:100px;
+            height: 100px;
+        }  
+      #colmeia-de-Amanda{
+        color:aquamarine
+        
+        }  
+    </style>
+        
+</head>
+<body>
+ 
+    <h1 id= "colmeia-de-Amanda">
+    Colméia de Amanda </h1>
+    <div id="colmeia">
+    </div>
+    <button id="Nova">Nova Abelha</button>
+    <script>
+    
+    
+    class abelhinha{
+        constructor(){
+            this.x = 0;
+                this.y = 0;
+                this.baseY = Math.random() * 300;
+                this.velocidadeX = Math.random() * 2+1;
+                this.el = document.createElement('img');
+                this.el.src = 'imagens/bee.png';
+                this.el.alt = 'Abelha';
+                document.querySelector('#colmeia').appendChild(this.el);
+            }
+            movimentar() {
+                this.x += this.velocidadeX;
+                this.y = this.baseY + Math.cos(this.x / 30) * 200;
+
+                if (this.x >= window.innerWidth) {
+                    this.x = 0;
+                    this.baseY = Math.random() * 300;
+                }
+
+                this.el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+
+    
+    }
+    let abelhas = [new abelhinha(), new abelhinha(), new abelhinha()];
+
+setInterval(() => {
+    for (let i = 0; i < abelhas.length; i++) {
+        abelhas[i].movimentar();
+    }
+}, 33);
+
+let novoEl = document.querySelector('#Nova');
+novoEl.addEventListener('click', () => {
+    abelhas.push(new abelhinha());
+});
+    </script>
+</body>
+</html>
